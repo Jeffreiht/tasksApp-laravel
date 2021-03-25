@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Task;
-use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
 
 class TaskController extends Controller
 {
@@ -35,11 +35,13 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         $task = Task::create([
             'user_id' => auth()->user()->id
         ]+ $request->all());
+
+        return redirect('tasks')->with('status', 'Se creo el archivo correctamente');
     }
 
     /**
@@ -67,10 +69,11 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(TaskRequest $request, Task $task)
     {
         $task->update($request->all());
 
+        return redirect('tasks')->with('status', 'Se actualizo el registro correctamente');
     }
 
     /**
@@ -82,6 +85,6 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        return back();
+        return back()->with('status', 'Se elimino el registro correctamente');
     }
 }
