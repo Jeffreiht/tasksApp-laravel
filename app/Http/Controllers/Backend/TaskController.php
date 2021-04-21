@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Task;
 use App\Http\Requests\TaskRequest;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -13,9 +14,15 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::latest()->get();
+        $title = $request->get('title');
+        $description = $request->get('description');
+        $user = $request->get('user');
+        $tasks = Task::orderBy('id', 'DESC')
+            ->title($title)
+            ->description($description)
+            ->get();
         return view('tasks.index', compact('tasks'));
     }
 

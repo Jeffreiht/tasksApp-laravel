@@ -10,6 +10,20 @@
                     <a href="{{ route('tasks.create') }}" class="btn btn-sm btn-primary float-right">Create</a>
                 </div>
                 <div class="card-body">
+                    <h4>
+                        Buscar Tareas
+                        <form action="{{ route('tasks.index') }}" method="GET" class="form-inline float-right mb-3 mt-0">
+                            <div class="form-group">
+                                <input type="text" name="title" class="form-control mr-1" placeholder="Title" value="{{ old('title') }}">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="description" class="form-control mr-1" placeholder="Description" value="{{ old('description') }}">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-secondary">Buscar</button>
+                            </div>
+                        </form>
+                    </h4>
                     <table class="table table-dark table-hover table-bordered">
                         <thead>
                             <tr>
