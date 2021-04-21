@@ -13,13 +13,13 @@
                         Buscar Tareas
                         <form action="{{ route('taskList') }}" method="GET" class="form-inline float-right mb-3 mt-0">
                             <div class="form-group">
-                                <input type="text" name="user" class="form-control mr-1" placeholder="User" value="{{ old('user') }}">
+                                <input type="text" name="user" class="form-control mr-1" placeholder="User" value="{{ request('user') }}">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="title" class="form-control mr-1" placeholder="Title" value="{{ old('title') }}">
+                                <input type="text" name="title" class="form-control mr-1" placeholder="Title" value="{{ request('title') }}">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="description" class="form-control mr-1" placeholder="Description" value="{{ old('description') }}">
+                                <input type="text" name="description" class="form-control mr-1" placeholder="Description" value="{{ request('description') }}">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-secondary">Buscar</button>
